@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>McCormick Family Pictures</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f7f1e8;
+      color: #2f261f;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .card {
+      max-width: 850px;
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 28px;
+      padding: 48px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      border: 1px solid rgba(90, 70, 50, 0.18);
+    }
+
+    .image-placeholder {
+      height: 220px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #d8c3a5, #f1e4cf);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      color: #6f563f;
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.8rem);
+      margin: 0 0 12px;
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      font-size: 1.45rem;
+      margin-bottom: 30px;
+      color: #6b4f39;
+    }
+
+    p {
+      font-size: 1.18rem;
+      line-height: 1.65;
+      margin: 0 auto 22px;
+      max-width: 680px;
+    }
+
+    .email-box {
+      margin: 34px auto;
+      padding: 22px;
+      border-radius: 18px;
+      background: #3f2f24;
+      color: white;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      font-weight: bold;
+      word-break: break-word;
+    }
+
+    .note {
+      font-size: 1rem;
+      color: #6d5a4c;
+      margin-top: 26px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="image-placeholder">
+      Family photo or logo can go here
+    </div>
+
+    <h1>McCormick Family Pictures</h1>
+
+    <div class="subtitle">Built with love for Grandma</div>
+
+    <p>
+      This project lets family members email pictures to a shared address so they can appear
+      on Grandma’s TV in a rotating slideshow.
+    </p>
+
+    <p>
+      It is a small way to keep her surrounded by family memories, holidays, grandkids,
+      trips, everyday moments, and the people who love her.
+    </p>
+
+    <div class="email-box">
+      sendtoGram@mccormickpics.com
+    </div>
+
+    <p class="note">
+      Please only send family-friendly photos you are comfortable having displayed in Grandma’s room.
+    </p>
+  </main>
+</body>
+</html>
