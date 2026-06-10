@@ -6,108 +6,413 @@
   <title>McCormick Family Pictures</title>
 
   <style>
+    :root {
+      color-scheme: light;
+      --ink: #261f1a;
+      --muted: #675d52;
+      --paper: #fffaf1;
+      --surface: #ffffff;
+      --sage: #557266;
+      --sage-dark: #29453c;
+      --coral: #d86b55;
+      --gold: #d6a84f;
+      --walnut: #3a2a22;
+      --line: rgba(38, 31, 26, 0.14);
+      --shadow: 0 24px 80px rgba(38, 31, 26, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      background: #f7f1e8;
-      color: #2f261f;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(255, 250, 241, 0.82), rgba(250, 239, 220, 0.96)),
+        #f8eedb;
+      color: var(--ink);
     }
 
-    .card {
-      max-width: 850px;
-      background: rgba(255, 255, 255, 0.88);
-      border-radius: 28px;
-      padding: 48px;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
-      text-align: center;
-      border: 1px solid rgba(90, 70, 50, 0.18);
+    .page {
+      overflow: hidden;
     }
 
-    .image-placeholder {
-      height: 220px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, #d8c3a5, #f1e4cf);
-      display: flex;
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: grid;
+      align-items: end;
+      padding: 28px;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(24, 20, 17, 0.7) 0%, rgba(24, 20, 17, 0.42) 42%, rgba(24, 20, 17, 0.1) 100%),
+        linear-gradient(180deg, rgba(24, 20, 17, 0.08) 0%, rgba(24, 20, 17, 0.78) 100%),
+        url("assets/family-memory-hero.png") center / cover;
+      transform: scale(1.015);
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(255, 250, 241, 0.28);
+      border-radius: 8px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 12vh 0 44px;
+      color: #fffaf1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 32px;
-      color: #6f563f;
-      font-size: 1.2rem;
-      letter-spacing: 0.04em;
+      gap: 10px;
+      margin: 0 0 18px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 250, 241, 0.34);
+      border-radius: 999px;
+      background: rgba(255, 250, 241, 0.12);
+      backdrop-filter: blur(16px);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(214, 168, 79, 0.18);
     }
 
     h1 {
-      font-size: clamp(2.3rem, 6vw, 4.8rem);
-      margin: 0 0 12px;
-      line-height: 1.05;
+      max-width: 760px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.2rem, 9vw, 8.7rem);
+      line-height: 0.88;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-wrap: balance;
+      text-shadow: 0 18px 60px rgba(0, 0, 0, 0.38);
     }
 
-    .subtitle {
-      font-size: 1.45rem;
-      margin-bottom: 30px;
-      color: #6b4f39;
+    .hero-copy {
+      max-width: 640px;
+      margin: 26px 0 0;
+      font-size: clamp(1.08rem, 2vw, 1.38rem);
+      line-height: 1.55;
+      color: rgba(255, 250, 241, 0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .primary-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 8px;
+      background: var(--coral);
+      color: #fffaf1;
+      font-weight: 850;
+      text-decoration: none;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+    }
+
+    .secondary-note {
+      max-width: 390px;
+      color: rgba(255, 250, 241, 0.78);
+      font-size: 0.96rem;
+      line-height: 1.45;
+    }
+
+    .content {
+      position: relative;
+      margin-top: -36px;
+      padding: 0 28px 56px;
+    }
+
+    .panel {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .story,
+    .send {
+      background: var(--surface);
+      padding: clamp(28px, 5vw, 54px);
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--sage);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4.2vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0;
+      text-wrap: balance;
     }
 
     p {
-      font-size: 1.18rem;
-      line-height: 1.65;
-      margin: 0 auto 22px;
-      max-width: 680px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
     }
 
-    .email-box {
-      margin: 34px auto;
-      padding: 22px;
-      border-radius: 18px;
-      background: #3f2f24;
-      color: white;
-      font-size: clamp(1.3rem, 4vw, 2rem);
-      font-weight: bold;
-      word-break: break-word;
+    .story p + p {
+      margin-top: 18px;
     }
 
-    .note {
+    .send {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 32px;
+      background:
+        linear-gradient(145deg, rgba(85, 114, 102, 0.08), rgba(216, 107, 85, 0.1)),
+        #fffdf8;
+    }
+
+    .send-box {
+      border: 1px solid rgba(41, 69, 60, 0.16);
+      border-radius: 8px;
+      padding: 24px;
+      background: #fffaf1;
+    }
+
+    .send-title {
+      margin: 0 0 12px;
+      font-size: 1.45rem;
+      line-height: 1.2;
+      font-weight: 900;
+      color: var(--sage-dark);
+    }
+
+    .send-copy {
+      margin-bottom: 22px;
       font-size: 1rem;
-      color: #6d5a4c;
-      margin-top: 26px;
+    }
+
+    .private-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 50px;
+      width: 100%;
+      padding: 0 18px;
+      border-radius: 8px;
+      background: var(--walnut);
+      color: #fffaf1;
+      font-size: clamp(1rem, 2.4vw, 1.18rem);
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .moments {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .moment {
+      min-height: 176px;
+      padding: 30px;
+      background: #fffdf8;
+    }
+
+    .moment strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--ink);
+      font-size: 1.05rem;
+    }
+
+    .moment p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .footer-note {
+      width: min(760px, 100%);
+      margin: 28px auto 0;
+      text-align: center;
+      color: rgba(38, 31, 26, 0.58);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        min-height: 82vh;
+        padding: 18px;
+      }
+
+      .hero::after {
+        inset: 12px;
+      }
+
+      .hero-inner {
+        padding-bottom: 34px;
+      }
+
+      .intro,
+      .moments {
+        grid-template-columns: 1fr;
+      }
+
+      .content {
+        margin-top: -22px;
+        padding: 0 16px 42px;
+      }
+
+      .primary-action {
+        width: 100%;
+      }
+
+      .secondary-note {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        background: #fffaf1;
+      }
+
+      .hero {
+        min-height: 78vh;
+      }
+
+      .eyebrow {
+        font-size: 0.7rem;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 18vw, 5rem);
+      }
+
+      .story,
+      .send,
+      .moment {
+        padding: 24px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="card">
-    <div class="image-placeholder">
-      Family photo or logo can go here
-    </div>
+  <main class="page">
+    <section class="hero" aria-label="McCormick family pictures">
+      <div class="hero-inner">
+        <div class="eyebrow">Built with love for Grandma</div>
+        <h1>McCormick Family Pictures</h1>
+        <p class="hero-copy">
+          A private family photo stream that turns emailed snapshots into a living slideshow on Grandma's TV.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#send">Send a Memory</a>
+          <div class="secondary-note">
+            Holidays, grandkids, trips, everyday moments, and the people who make home feel full.
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h1>McCormick Family Pictures</h1>
+    <section class="content">
+      <div class="panel">
+        <div class="intro">
+          <div class="story">
+            <p class="kicker">The simple idea</p>
+            <h2>Every photo becomes a little visit.</h2>
+            <p>
+              Family members can send favorite pictures to a shared address, and those moments appear in a rotating slideshow made for Grandma's room.
+            </p>
+            <p>
+              It keeps new memories close without needing her to open an app, check a phone, or sort through messages.
+            </p>
+          </div>
 
-    <div class="subtitle">Built with love for Grandma</div>
+          <div class="send" id="send">
+            <div class="send-box">
+              <p class="send-title">Add photos to Grandma's slideshow</p>
+              <p class="send-copy">
+                To keep the stream private and family-only, ask Jesse or another family member for the photo email address.
+              </p>
+              <div class="private-pill">Family photo address available by request</div>
+            </div>
+            <p>
+              Please send family-friendly photos you are comfortable having displayed in Grandma's room.
+            </p>
+          </div>
+        </div>
 
-    <p>
-      This project lets family members email pictures to a shared address so they can appear
-      on Grandma’s TV in a rotating slideshow.
-    </p>
+        <div class="moments" aria-label="Kinds of photos to share">
+          <div class="moment">
+            <strong>Fresh smiles</strong>
+            <p>New school days, birthdays, backyard snapshots, and ordinary afternoons worth keeping close.</p>
+          </div>
+          <div class="moment">
+            <strong>Family milestones</strong>
+            <p>Holidays, vacations, reunions, graduations, visits, and moments that tell the family story.</p>
+          </div>
+          <div class="moment">
+            <strong>Room-ready memories</strong>
+            <p>Photos are meant to feel warm, familiar, and comfortable on the TV where Grandma can enjoy them.</p>
+          </div>
+        </div>
+      </div>
 
-    <p>
-      It is a small way to keep her surrounded by family memories, holidays, grandkids,
-      trips, everyday moments, and the people who love her.
-    </p>
-
-    <div class="email-box">
-    Family members can send photos to Grandma’s slideshow
-    </div>
-
-    <p class="note">
-      To help keep the slideshow private and family-only, please ask Jesse or another family member for the photo email address.
-    </p>
-    </p>
-    
+      <p class="footer-note">
+        This page is only for family coordination. The slideshow address is shared privately so Grandma's screen stays personal.
+      </p>
+    </section>
   </main>
 </body>
 </html>
