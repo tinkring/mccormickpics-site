@@ -85,18 +85,15 @@
     }
 
     .brand-signature {
-      display: inline-block;
-      margin: 0 0 2px;
-      color: var(--gold-dark);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.2rem, 3.5vw, 3.5rem);
-      font-style: italic;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      text-shadow:
-        0 1px 0 #f6d998,
-        0 3px 8px rgba(85, 49, 20, 0.2);
+      width: clamp(190px, 22vw, 290px);
+      margin: 0 0 3px;
+      filter: drop-shadow(0 4px 6px rgba(74, 42, 18, 0.2));
+    }
+
+    .brand-signature img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .brand-ornament {
@@ -630,13 +627,7 @@
       }
 
       .brand-signature {
-        font-family: "Brush Script MT", "Segoe Script", "Snell Roundhand", cursive;
-        font-size: clamp(2.7rem, 14vw, 3.8rem);
-        font-style: normal;
-        font-weight: 600;
-        line-height: 0.9;
-        letter-spacing: 0.01em;
-        transform: rotate(-2deg);
+        width: min(250px, 78vw);
       }
 
       .brand-ornament {
@@ -774,7 +765,9 @@
     <section class="hero" aria-label="McCormick family pictures">
       <div class="hero-shell">
         <div class="hero-copy-block">
-          <div class="brand-signature" aria-label="McPics">McPics</div>
+          <div class="brand-signature">
+            <img src="assets/mcpics-wordmark.png" alt="McPics" />
+          </div>
           <div class="brand-ornament" aria-hidden="true"><span></span></div>
           <div class="eyebrow">Built with love for Grandma</div>
           <h1>McCormick Family Pictures</h1>
