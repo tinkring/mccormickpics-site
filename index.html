@@ -8,17 +8,20 @@
   <style>
     :root {
       color-scheme: light;
-      --ink: #241f1b;
-      --muted: #665c52;
-      --paper: #fff8eb;
-      --cream: #f6ead8;
-      --sage: #546e60;
-      --sage-dark: #213f35;
-      --coral: #d76850;
-      --gold: #d5a347;
-      --walnut: #3a2921;
-      --line: rgba(36, 31, 27, 0.13);
-      --shadow: 0 24px 80px rgba(58, 41, 33, 0.18);
+      --ink: #2e2118;
+      --muted: #6f5a46;
+      --paper: #fff8e9;
+      --cream: #f2e3c7;
+      --sage: #756747;
+      --sage-dark: #4a3826;
+      --coral: #9c5b3e;
+      --gold: #bd8b38;
+      --gold-light: #e3bf74;
+      --gold-dark: #81571f;
+      --walnut: #321f14;
+      --espresso: #1e130d;
+      --line: rgba(83, 55, 31, 0.17);
+      --shadow: 0 28px 70px rgba(61, 37, 20, 0.2);
     }
 
     * {
@@ -35,9 +38,10 @@
       overflow-x: hidden;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 18% 12%, rgba(213, 163, 71, 0.22), transparent 28%),
-        radial-gradient(circle at 80% 8%, rgba(84, 110, 96, 0.18), transparent 30%),
-        linear-gradient(180deg, #fffaf1 0%, #f4e6d0 100%);
+        radial-gradient(circle at 16% 8%, rgba(210, 161, 75, 0.27), transparent 27%),
+        radial-gradient(circle at 83% 10%, rgba(118, 75, 38, 0.14), transparent 29%),
+        repeating-linear-gradient(90deg, rgba(97, 65, 36, 0.018) 0 1px, transparent 1px 5px),
+        linear-gradient(180deg, #fffaf0 0%, #f3e2c5 100%);
       color: var(--ink);
     }
 
@@ -47,13 +51,27 @@
     }
 
     .hero {
+      position: relative;
       min-height: min(100svh, 900px);
       display: grid;
       align-items: center;
       padding: clamp(32px, 5vh, 64px) clamp(18px, 4vw, 48px);
     }
 
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 20% 48%, rgba(255, 249, 232, 0.72), transparent 48%),
+        linear-gradient(90deg, rgba(84, 48, 22, 0.04), transparent 38%, rgba(84, 48, 22, 0.07));
+      box-shadow: inset 0 -1px rgba(120, 79, 36, 0.12);
+    }
+
     .hero-shell {
+      position: relative;
+      z-index: 1;
       width: min(1240px, 100%);
       margin: 0 auto;
       display: grid;
@@ -66,16 +84,60 @@
       min-width: 0;
     }
 
+    .brand-signature {
+      display: inline-block;
+      margin: 0 0 2px;
+      color: var(--gold-dark);
+      font-family: "Brush Script MT", "Segoe Script", "Snell Roundhand", cursive;
+      font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+      font-weight: 600;
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+      text-shadow:
+        0 1px 0 #f6d998,
+        0 3px 8px rgba(85, 49, 20, 0.2);
+      transform: rotate(-2deg);
+    }
+
+    .brand-ornament {
+      display: flex;
+      align-items: center;
+      width: min(270px, 72%);
+      gap: 10px;
+      margin: 3px 0 14px;
+      color: var(--gold);
+    }
+
+    .brand-ornament::before,
+    .brand-ornament::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, currentColor);
+    }
+
+    .brand-ornament::after {
+      background: linear-gradient(90deg, currentColor, transparent);
+    }
+
+    .brand-ornament span {
+      width: 8px;
+      height: 8px;
+      border: 1px solid currentColor;
+      transform: rotate(45deg);
+    }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       margin: 0 0 18px;
       padding: 8px 12px;
-      border: 1px solid rgba(84, 110, 96, 0.28);
+      border: 1px solid rgba(153, 106, 43, 0.34);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.58);
-      color: var(--sage-dark);
+      background: rgba(255, 249, 234, 0.72);
+      color: #604322;
+      box-shadow: 0 8px 24px rgba(78, 49, 25, 0.08);
       font-size: 0.76rem;
       font-weight: 900;
       letter-spacing: 0.08em;
@@ -88,7 +150,7 @@
       height: 8px;
       border-radius: 50%;
       background: var(--gold);
-      box-shadow: 0 0 0 5px rgba(213, 163, 71, 0.18);
+      box-shadow: 0 0 0 5px rgba(189, 139, 56, 0.16);
     }
 
     h1 {
@@ -100,6 +162,7 @@
       font-weight: 900;
       letter-spacing: 0;
       text-wrap: balance;
+      text-shadow: 0 2px 0 rgba(255, 255, 255, 0.48);
     }
 
     .hero-copy {
@@ -114,10 +177,14 @@
       display: block;
       width: min(680px, 100%);
       margin-top: 28px;
-      border: 1px solid rgba(36, 31, 27, 0.12);
-      border-radius: 8px;
-      background: var(--walnut);
-      box-shadow: 0 18px 44px rgba(58, 41, 33, 0.26);
+      border: 1px solid rgba(221, 181, 105, 0.62);
+      border-radius: 10px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(211, 158, 72, 0.16), transparent 35%),
+        linear-gradient(145deg, #41291a, var(--espresso));
+      box-shadow:
+        0 20px 46px rgba(55, 31, 16, 0.3),
+        inset 0 0 0 3px rgba(255, 238, 198, 0.045);
       color: #fff8eb;
       text-decoration: none;
       overflow: hidden;
@@ -129,7 +196,7 @@
 
     .email-callout:hover {
       transform: translateY(-2px);
-      border-color: rgba(213, 163, 71, 0.48);
+      border-color: rgba(227, 191, 116, 0.86);
       box-shadow: 0 22px 52px rgba(58, 41, 33, 0.3);
     }
 
@@ -155,6 +222,7 @@
       font-weight: 950;
       line-height: 1.08;
       white-space: nowrap;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.34);
     }
 
     .hero-actions {
@@ -180,9 +248,27 @@
     }
 
     .secondary-action {
-      border: 1px solid rgba(36, 31, 27, 0.16);
-      color: var(--sage-dark);
-      background: rgba(255, 255, 255, 0.54);
+      border: 1px solid rgba(128, 84, 37, 0.27);
+      color: #4b321e;
+      background: linear-gradient(180deg, rgba(255, 252, 242, 0.9), rgba(239, 222, 190, 0.78));
+      box-shadow:
+        0 8px 20px rgba(72, 43, 22, 0.1),
+        inset 0 1px rgba(255, 255, 255, 0.7);
+      transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .secondary-action:hover {
+      transform: translateY(-1px);
+      border-color: rgba(150, 99, 38, 0.54);
+      box-shadow: 0 11px 24px rgba(72, 43, 22, 0.14);
+    }
+
+    .secondary-action:focus-visible {
+      outline: 3px solid rgba(189, 139, 56, 0.48);
+      outline-offset: 3px;
     }
 
     .visual {
@@ -195,10 +281,12 @@
       padding: clamp(24px, 3vw, 34px);
       border-radius: 8px;
       background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 248, 235, 0.52)),
-        rgba(255, 255, 255, 0.56);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255, 255, 255, 0.82);
+        linear-gradient(145deg, rgba(255, 250, 235, 0.94), rgba(232, 207, 165, 0.72)),
+        rgba(255, 248, 229, 0.78);
+      box-shadow:
+        var(--shadow),
+        inset 0 0 0 4px rgba(255, 252, 240, 0.52);
+      border: 1px solid rgba(157, 108, 51, 0.25);
       overflow: hidden;
     }
 
@@ -219,8 +307,11 @@
       height: 250px;
       border-radius: 8px;
       padding: 14px;
-      background: #211b18;
-      box-shadow: 0 24px 50px rgba(36, 31, 27, 0.28);
+      background: linear-gradient(145deg, #3a281c, #17100c);
+      border: 1px solid rgba(220, 173, 91, 0.44);
+      box-shadow:
+        0 24px 50px rgba(36, 23, 15, 0.34),
+        inset 0 0 0 2px rgba(255, 231, 178, 0.05);
     }
 
     .tv-screen {
@@ -229,7 +320,7 @@
       border-radius: 6px;
       background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 38%),
-        linear-gradient(145deg, #f1b47a 0%, #9e6058 38%, #334d46 100%);
+        linear-gradient(145deg, #e7b875 0%, #945d49 42%, #44382c 100%);
       overflow: hidden;
     }
 
@@ -283,8 +374,10 @@
       padding: 14px 16px;
       border: 1px solid rgba(36, 31, 27, 0.1);
       border-radius: 8px;
-      background: rgba(255, 250, 241, 0.9);
-      box-shadow: 0 14px 34px rgba(36, 31, 27, 0.08);
+      background: rgba(255, 249, 232, 0.92);
+      box-shadow:
+        0 14px 34px rgba(67, 40, 21, 0.1),
+        inset 3px 0 var(--gold);
     }
 
     .step-number {
@@ -294,7 +387,8 @@
       height: 34px;
       grid-row: 1 / span 2;
       border-radius: 50%;
-      background: var(--sage-dark);
+      background: linear-gradient(145deg, #725027, #3d2918);
+      border: 1px solid rgba(218, 177, 96, 0.6);
       color: #fff8eb;
       font-weight: 900;
     }
@@ -353,16 +447,16 @@
       display: grid;
       grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
       gap: 1px;
-      border-radius: 8px;
-      border: 1px solid rgba(36, 31, 27, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(133, 88, 39, 0.2);
       background: var(--line);
-      box-shadow: 0 18px 60px rgba(58, 41, 33, 0.1);
+      box-shadow: 0 20px 56px rgba(67, 40, 21, 0.14);
       overflow: hidden;
     }
 
     .guidance-intro,
     .tip {
-      background: rgba(255, 255, 255, 0.76);
+      background: rgba(255, 250, 238, 0.86);
       padding: clamp(26px, 4vw, 42px);
     }
 
@@ -382,6 +476,7 @@
       line-height: 1;
       letter-spacing: 0;
       text-wrap: balance;
+      color: #3a281b;
     }
 
     .guidance-intro p {
@@ -426,10 +521,10 @@
       margin: 24px auto 0;
       display: grid;
       grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
-      border: 1px solid rgba(36, 31, 27, 0.1);
+      border: 1px solid rgba(133, 88, 39, 0.22);
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.76);
-      box-shadow: 0 18px 60px rgba(58, 41, 33, 0.1);
+      background: rgba(255, 250, 238, 0.88);
+      box-shadow: 0 20px 56px rgba(67, 40, 21, 0.15);
       overflow: hidden;
     }
 
@@ -440,8 +535,8 @@
       place-items: center;
       padding: 28px;
       background:
-        linear-gradient(145deg, rgba(213, 163, 71, 0.28), rgba(215, 104, 80, 0.2)),
-        var(--cream);
+        linear-gradient(145deg, rgba(189, 139, 56, 0.34), rgba(107, 65, 34, 0.18)),
+        #ead5ae;
       color: var(--walnut);
       text-align: center;
     }
@@ -450,7 +545,8 @@
       content: "";
       position: absolute;
       inset: 20px;
-      border: 1px solid rgba(58, 41, 33, 0.18);
+      border: 1px solid rgba(111, 70, 31, 0.34);
+      box-shadow: inset 0 0 0 5px rgba(255, 245, 219, 0.25);
       border-radius: 8px;
     }
 
@@ -531,6 +627,15 @@
 
       .eyebrow {
         margin-bottom: 14px;
+      }
+
+      .brand-signature {
+        font-size: clamp(2.7rem, 14vw, 3.8rem);
+      }
+
+      .brand-ornament {
+        width: 210px;
+        margin-bottom: 12px;
       }
 
       h1 {
@@ -663,6 +768,8 @@
     <section class="hero" aria-label="McCormick family pictures">
       <div class="hero-shell">
         <div class="hero-copy-block">
+          <div class="brand-signature" aria-label="McPics">McPics</div>
+          <div class="brand-ornament" aria-hidden="true"><span></span></div>
           <div class="eyebrow">Built with love for Grandma</div>
           <h1>McCormick Family Pictures</h1>
           <p class="hero-copy">
