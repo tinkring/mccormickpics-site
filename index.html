@@ -542,18 +542,11 @@
       content: "";
       position: absolute;
       inset: 20px;
+      z-index: 1;
       border: 1px solid rgba(111, 70, 31, 0.34);
       box-shadow: inset 0 0 0 5px rgba(255, 245, 219, 0.25);
       border-radius: 8px;
-    }
-
-    .about-photo span {
-      position: relative;
-      max-width: 220px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.35rem;
-      font-weight: 900;
-      line-height: 1.2;
+      pointer-events: none;
     }
 
     .about-photo img {
@@ -562,6 +555,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: 68% 28%;
     }
 
     .about-copy {
@@ -727,7 +721,11 @@
       }
 
       .about-photo {
-        min-height: 220px;
+        min-height: 290px;
+      }
+
+      .about-photo img {
+        object-position: 66% 24%;
       }
 
       .about-copy {
@@ -877,9 +875,11 @@
     <section class="content" id="about" aria-hidden="true" inert>
       <div class="content-inner">
         <div class="about-card">
-          <!-- Replace the span with an img element when a family photo is ready. -->
-          <div class="about-photo" role="img" aria-label="Placeholder for a photo of Grandma or the family">
-            <span>Grandma or family photo</span>
+          <div class="about-photo">
+            <img
+              src="assets/grandma-about.jpeg"
+              alt="Grandma smiling at home beside a glowing lamp"
+            />
           </div>
 
           <div class="about-copy">
