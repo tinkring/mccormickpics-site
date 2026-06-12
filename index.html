@@ -111,13 +111,31 @@
     }
 
     .email-callout {
+      display: block;
       width: min(680px, 100%);
       margin-top: 28px;
       border: 1px solid rgba(36, 31, 27, 0.12);
       border-radius: 8px;
       background: var(--walnut);
       box-shadow: 0 18px 44px rgba(58, 41, 33, 0.26);
+      color: #fff8eb;
+      text-decoration: none;
       overflow: hidden;
+      transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+    }
+
+    .email-callout:hover {
+      transform: translateY(-2px);
+      border-color: rgba(213, 163, 71, 0.48);
+      box-shadow: 0 22px 52px rgba(58, 41, 33, 0.3);
+    }
+
+    .email-callout:focus-visible {
+      outline: 3px solid rgba(213, 163, 71, 0.72);
+      outline-offset: 4px;
     }
 
     .email-label {
@@ -133,23 +151,21 @@
     .email-link {
       display: block;
       padding: 8px 20px 20px;
-      color: #fff8eb;
       font-size: clamp(1.35rem, 2.5vw, 2.25rem);
       font-weight: 950;
       line-height: 1.08;
-      text-decoration: none;
       white-space: nowrap;
     }
 
     .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
+      width: min(500px, 100%);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       align-items: center;
       margin-top: 18px;
     }
 
-    .primary-action,
     .secondary-action {
       display: inline-flex;
       align-items: center;
@@ -161,12 +177,6 @@
       font-weight: 850;
       text-decoration: none;
       cursor: pointer;
-    }
-
-    .primary-action {
-      background: var(--coral);
-      color: #fff8eb;
-      box-shadow: 0 14px 30px rgba(215, 104, 80, 0.26);
     }
 
     .secondary-action {
@@ -562,7 +572,6 @@
         grid-template-columns: 1fr;
       }
 
-      .primary-action,
       .secondary-action {
         width: 100%;
         min-height: 50px;
@@ -660,13 +669,17 @@
             Email a photo once, and it can show up on Grandma's TV as part of a private rotating family slideshow.
           </p>
 
-          <div class="email-callout" id="send">
+          <a
+            class="email-callout"
+            id="send"
+            href="mailto:upload@mccormickpics.com"
+            aria-label="Email photos to upload@mccormickpics.com"
+          >
             <p class="email-label">Send photos to</p>
-            <a class="email-link" href="mailto:upload@mccormickpics.com">upload@mccormickpics.com</a>
-          </div>
+            <span class="email-link">upload@mccormickpics.com</span>
+          </a>
 
           <div class="hero-actions">
-            <a class="primary-action" href="mailto:upload@mccormickpics.com">Email Photos</a>
             <button
               class="secondary-action"
               id="tips-toggle"
