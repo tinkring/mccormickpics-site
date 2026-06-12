@@ -411,6 +411,78 @@
       line-height: 1.6;
     }
 
+    .about-card {
+      width: min(1240px, 100%);
+      margin: 24px auto 0;
+      display: grid;
+      grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+      border: 1px solid rgba(36, 31, 27, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 18px 60px rgba(58, 41, 33, 0.1);
+      overflow: hidden;
+    }
+
+    .about-photo {
+      position: relative;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background:
+        linear-gradient(145deg, rgba(213, 163, 71, 0.28), rgba(215, 104, 80, 0.2)),
+        var(--cream);
+      color: var(--walnut);
+      text-align: center;
+    }
+
+    .about-photo::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(58, 41, 33, 0.18);
+      border-radius: 8px;
+    }
+
+    .about-photo span {
+      position: relative;
+      max-width: 220px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .about-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-copy {
+      align-self: center;
+      padding: clamp(30px, 5vw, 58px);
+    }
+
+    .about-copy p {
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.12rem);
+      line-height: 1.7;
+    }
+
+    .about-copy .about-closing {
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--sage-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
     @media (max-width: 980px) {
       .hero {
         min-height: auto;
@@ -418,7 +490,8 @@
       }
 
       .hero-shell,
-      .guidance {
+      .guidance,
+      .about-card {
         grid-template-columns: 1fr;
       }
 
@@ -430,6 +503,10 @@
         width: 100%;
         max-width: 680px;
         justify-self: center;
+      }
+
+      .about-photo {
+        min-height: 280px;
       }
     }
 
@@ -537,6 +614,14 @@
       .flow-step p {
         font-size: 0.82rem;
       }
+
+      .about-photo {
+        min-height: 220px;
+      }
+
+      .about-copy {
+        padding: 28px 24px;
+      }
     }
 
     @media (max-width: 460px) {
@@ -586,9 +671,22 @@
               class="secondary-action"
               id="tips-toggle"
               type="button"
+              data-disclosure-target="tips"
+              data-open-label="Hide photo tips"
+              data-closed-label="What should I send?"
               aria-expanded="false"
               aria-controls="tips"
             >What should I send?</button>
+            <button
+              class="secondary-action"
+              id="about-toggle"
+              type="button"
+              data-disclosure-target="about"
+              data-open-label="Hide project story"
+              data-closed-label="About this project"
+              aria-expanded="false"
+              aria-controls="about"
+            >About this project</button>
           </div>
         </div>
 
@@ -656,31 +754,55 @@
         </p>
       </div>
     </section>
+
+    <section class="content" id="about" aria-hidden="true" inert>
+      <div class="content-inner">
+        <div class="about-card">
+          <!-- Replace the span with an img element when a family photo is ready. -->
+          <div class="about-photo" role="img" aria-label="Placeholder for a photo of Grandma or the family">
+            <span>Grandma or family photo</span>
+          </div>
+
+          <div class="about-copy">
+            <p class="kicker">The story behind the slideshow</p>
+            <h2>About this project</h2>
+            <p>
+              McCormick Family Pictures was created as a simple way for family to share moments with Grandma. Instead of photos staying scattered across phones, texts, and social media, they can show up right on her TV as a private family slideshow. The goal is to help her feel connected to the people, memories, and everyday moments she loves.
+            </p>
+            <p class="about-closing">
+              Everyday pictures, old memories, and little life updates all help keep family close.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
-    const tipsToggle = document.querySelector("#tips-toggle");
-    const tipsSection = document.querySelector("#tips");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    tipsToggle.addEventListener("click", (event) => {
-      event.preventDefault();
+    document.querySelectorAll("[data-disclosure-target]").forEach((toggle) => {
+      const section = document.querySelector(`#${toggle.dataset.disclosureTarget}`);
 
-      const willOpen = !tipsSection.classList.contains("is-open");
-      tipsSection.classList.toggle("is-open", willOpen);
-      tipsSection.toggleAttribute("inert", !willOpen);
-      tipsSection.setAttribute("aria-hidden", String(!willOpen));
-      tipsToggle.setAttribute("aria-expanded", String(willOpen));
-      tipsToggle.textContent = willOpen ? "Hide photo tips" : "What should I send?";
+      toggle.addEventListener("click", () => {
+        const willOpen = !section.classList.contains("is-open");
+        section.classList.toggle("is-open", willOpen);
+        section.toggleAttribute("inert", !willOpen);
+        section.setAttribute("aria-hidden", String(!willOpen));
+        toggle.setAttribute("aria-expanded", String(willOpen));
+        toggle.textContent = willOpen
+          ? toggle.dataset.openLabel
+          : toggle.dataset.closedLabel;
 
-      if (willOpen) {
-        window.setTimeout(() => {
-          tipsSection.scrollIntoView({
-            behavior: reduceMotion.matches ? "auto" : "smooth",
-            block: "start"
-          });
-        }, reduceMotion.matches ? 0 : 120);
-      }
+        if (willOpen) {
+          window.setTimeout(() => {
+            section.scrollIntoView({
+              behavior: reduceMotion.matches ? "auto" : "smooth",
+              block: "start"
+            });
+          }, reduceMotion.matches ? 0 : 120);
+        }
+      });
     });
   </script>
 </body>
