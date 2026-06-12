@@ -438,6 +438,10 @@
       padding-bottom: 56px;
     }
 
+    .mobile-disclosure-control {
+      display: none;
+    }
+
     .guidance {
       width: min(1240px, 100%);
       margin: 24px auto 0;
@@ -658,10 +662,25 @@
       }
 
       .hero-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin-top: 16px;
+        display: none;
+      }
+
+      .mobile-disclosure-control {
+        display: block;
+        padding: 18px 24px 0;
+      }
+
+      .mobile-disclosure-control .secondary-action {
+        width: 100%;
+      }
+
+      .mobile-disclosure-control + .content {
+        padding-right: 24px;
+        padding-left: 24px;
+      }
+
+      .content.is-open .content-inner {
+        padding-bottom: 32px;
       }
 
       .tips {
@@ -835,6 +854,18 @@
       </div>
     </section>
 
+    <div class="mobile-disclosure-control">
+      <button
+        class="secondary-action"
+        type="button"
+        data-disclosure-target="tips"
+        data-open-label="Hide photo tips"
+        data-closed-label="Show photo tips"
+        aria-expanded="false"
+        aria-controls="tips"
+      >Show photo tips</button>
+    </div>
+
     <section class="content" id="tips" aria-hidden="true" inert>
       <div class="content-inner">
         <div class="guidance">
@@ -856,8 +887,8 @@
               <p>Scanned prints, reunion photos, vacation memories, and holiday pictures are great additions.</p>
             </div>
             <div class="tip">
-              <strong>Choose clear, easy-to-see photos</strong>
-              <p>Photos with good light and recognizable faces tend to look best from across Grandma's room.</p>
+              <strong>Send full-size photos when possible</strong>
+              <p>Choosing Actual Size or Original Quality helps photos look their best on Grandma's TV.</p>
             </div>
             <div class="tip">
               <strong>Skip anything too private</strong>
@@ -871,6 +902,18 @@
         </p>
       </div>
     </section>
+
+    <div class="mobile-disclosure-control">
+      <button
+        class="secondary-action"
+        type="button"
+        data-disclosure-target="about"
+        data-open-label="Hide project story"
+        data-closed-label="Show project story"
+        aria-expanded="false"
+        aria-controls="about"
+      >Show project story</button>
+    </div>
 
     <section class="content" id="about" aria-hidden="true" inert>
       <div class="content-inner">
@@ -914,14 +957,23 @@
         section.classList.toggle("is-open", willOpen);
         section.toggleAttribute("inert", !willOpen);
         section.setAttribute("aria-hidden", String(!willOpen));
-        toggle.setAttribute("aria-expanded", String(willOpen));
-        toggle.textContent = willOpen
-          ? toggle.dataset.openLabel
-          : toggle.dataset.closedLabel;
+
+        document
+          .querySelectorAll(`[data-disclosure-target="${toggle.dataset.disclosureTarget}"]`)
+          .forEach((relatedToggle) => {
+            relatedToggle.setAttribute("aria-expanded", String(willOpen));
+            relatedToggle.textContent = willOpen
+              ? relatedToggle.dataset.openLabel
+              : relatedToggle.dataset.closedLabel;
+          });
 
         if (willOpen) {
           window.setTimeout(() => {
-            section.scrollIntoView({
+            const scrollTarget = window.matchMedia("(max-width: 680px)").matches
+              ? toggle
+              : section;
+
+            scrollTarget.scrollIntoView({
               behavior: reduceMotion.matches ? "auto" : "smooth",
               block: "start"
             });
