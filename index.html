@@ -46,19 +46,23 @@
     }
 
     .hero {
-      min-height: 100svh;
+      min-height: min(100svh, 900px);
       display: grid;
       align-items: center;
-      padding: clamp(18px, 3vw, 34px);
+      padding: clamp(32px, 5vh, 64px) clamp(18px, 4vw, 48px);
     }
 
     .hero-shell {
-      width: min(1180px, 100%);
+      width: min(1240px, 100%);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(0, 1.03fr) minmax(360px, 0.97fr);
-      gap: clamp(22px, 4vw, 54px);
+      grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.88fr);
+      gap: clamp(48px, 6vw, 88px);
       align-items: center;
+    }
+
+    .hero-copy-block {
+      min-width: 0;
     }
 
     .eyebrow {
@@ -87,11 +91,11 @@
     }
 
     h1 {
-      max-width: 760px;
+      max-width: 720px;
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(3rem, 7.2vw, 7.3rem);
-      line-height: 0.9;
+      font-size: clamp(3.4rem, 5.7vw, 6.35rem);
+      line-height: 0.94;
       font-weight: 900;
       letter-spacing: 0;
       text-wrap: balance;
@@ -129,11 +133,11 @@
       display: block;
       padding: 8px 20px 20px;
       color: #fff8eb;
-      font-size: clamp(1.42rem, 3.8vw, 2.45rem);
+      font-size: clamp(1.35rem, 2.5vw, 2.25rem);
       font-weight: 950;
       line-height: 1.08;
       text-decoration: none;
-      overflow-wrap: anywhere;
+      white-space: nowrap;
     }
 
     .hero-actions {
@@ -152,8 +156,10 @@
       min-height: 48px;
       padding: 0 18px;
       border-radius: 8px;
+      font: inherit;
       font-weight: 850;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .primary-action {
@@ -170,7 +176,12 @@
 
     .visual {
       position: relative;
-      min-height: 580px;
+      width: min(100%, 470px);
+      min-width: 0;
+      justify-self: end;
+      display: grid;
+      gap: 22px;
+      padding: clamp(24px, 3vw, 34px);
       border-radius: 8px;
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 248, 235, 0.52)),
@@ -192,11 +203,9 @@
     }
 
     .tv {
-      position: absolute;
-      top: 42px;
-      right: 42px;
-      left: 42px;
-      height: 268px;
+      position: relative;
+      z-index: 1;
+      height: 250px;
       border-radius: 8px;
       padding: 14px;
       background: #211b18;
@@ -250,16 +259,17 @@
     }
 
     .flow {
-      position: absolute;
-      inset: auto 34px 34px;
+      position: relative;
+      z-index: 1;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
+      gap: 10px;
     }
 
     .flow-step {
-      min-height: 170px;
-      padding: 18px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: 14px;
+      padding: 14px 16px;
       border: 1px solid rgba(36, 31, 27, 0.1);
       border-radius: 8px;
       background: rgba(255, 250, 241, 0.9);
@@ -271,7 +281,7 @@
       place-items: center;
       width: 34px;
       height: 34px;
-      margin-bottom: 18px;
+      grid-row: 1 / span 2;
       border-radius: 50%;
       background: var(--sage-dark);
       color: #fff8eb;
@@ -280,26 +290,55 @@
 
     .flow-step strong {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 3px;
       color: var(--ink);
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       line-height: 1.2;
     }
 
     .flow-step p {
       margin: 0;
       color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.48;
+      font-size: 0.87rem;
+      line-height: 1.42;
     }
 
     .content {
-      padding: 0 clamp(18px, 3vw, 34px) 56px;
+      display: grid;
+      grid-template-rows: 0fr;
+      padding: 0 clamp(18px, 4vw, 48px);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        grid-template-rows 420ms ease,
+        opacity 240ms ease,
+        visibility 0s linear 420ms;
+    }
+
+    .content.is-open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      visibility: visible;
+      transition:
+        grid-template-rows 420ms ease,
+        opacity 280ms ease 80ms,
+        visibility 0s;
+    }
+
+    .content-inner {
+      min-height: 0;
+      overflow: hidden;
+      padding-bottom: 0;
+      transition: padding-bottom 420ms ease;
+    }
+
+    .content.is-open .content-inner {
+      padding-bottom: 56px;
     }
 
     .guidance {
-      width: min(1180px, 100%);
-      margin: 0 auto;
+      width: min(1240px, 100%);
+      margin: 24px auto 0;
       display: grid;
       grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
       gap: 1px;
@@ -374,7 +413,7 @@
     @media (max-width: 980px) {
       .hero {
         min-height: auto;
-        padding-top: 28px;
+        padding-top: 32px;
       }
 
       .hero-shell,
@@ -382,14 +421,14 @@
         grid-template-columns: 1fr;
       }
 
-      .visual {
-        min-height: 500px;
+      .hero-shell {
+        gap: 36px;
       }
 
-      .tv {
-        top: 26px;
-        right: 26px;
-        left: 26px;
+      .visual {
+        width: 100%;
+        max-width: 680px;
+        justify-self: center;
       }
     }
 
@@ -399,7 +438,6 @@
       }
 
       .hero-actions,
-      .flow,
       .tips {
         grid-template-columns: 1fr;
       }
@@ -409,16 +447,8 @@
         width: 100%;
       }
 
-      .visual {
-        min-height: 640px;
-      }
-
       .tv {
         height: 230px;
-      }
-
-      .flow {
-        inset: auto 18px 18px;
       }
 
       .flow-step {
@@ -435,12 +465,25 @@
         margin-top: 22px;
       }
 
-      .visual {
-        min-height: 600px;
+      .email-link {
+        white-space: normal;
+        overflow-wrap: anywhere;
       }
 
       .screen-caption {
         font-size: 1.42rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .content,
+      .content.is-open,
+      .content-inner {
+        transition: none;
       }
     }
   </style>
@@ -464,7 +507,13 @@
 
           <div class="hero-actions">
             <a class="primary-action" href="mailto:upload@mccormickpics.com">Email Photos</a>
-            <a class="secondary-action" href="#tips">What should I send?</a>
+            <button
+              class="secondary-action"
+              id="tips-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="tips"
+            >What should I send?</button>
           </div>
         </div>
 
@@ -496,41 +545,69 @@
       </div>
     </section>
 
-    <section class="content" id="tips">
-      <div class="guidance">
-        <div class="guidance-intro">
-          <p class="kicker">Good photos to send</p>
-          <h2>Keep it simple, personal, and room-ready.</h2>
-          <p>
-            A quick snapshot is perfect. The goal is not polished photography; it is helping Grandma feel close to the people and places she loves.
-          </p>
+    <section class="content" id="tips" aria-hidden="true" inert>
+      <div class="content-inner">
+        <div class="guidance">
+          <div class="guidance-intro">
+            <p class="kicker">Good photos to send</p>
+            <h2>Keep it simple, personal, and room-ready.</h2>
+            <p>
+              A quick snapshot is perfect. The goal is not polished photography; it is helping Grandma feel close to the people and places she loves.
+            </p>
+          </div>
+
+          <div class="tips">
+            <div class="tip">
+              <strong>Send recent everyday moments</strong>
+              <p>Kids, visits, meals, pets, projects, sports, school, and normal family life all work well.</p>
+            </div>
+            <div class="tip">
+              <strong>Old favorites are welcome</strong>
+              <p>Scanned prints, reunion photos, vacation memories, and holiday pictures are great additions.</p>
+            </div>
+            <div class="tip">
+              <strong>Use the email subject if helpful</strong>
+              <p>A short note like "Eli's birthday" or "Christmas 2025" helps identify the moment.</p>
+            </div>
+            <div class="tip">
+              <strong>Skip anything too private</strong>
+              <p>Only send photos you are comfortable having displayed in Grandma's room.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="tips">
-          <div class="tip">
-            <strong>Send recent everyday moments</strong>
-            <p>Kids, visits, meals, pets, projects, sports, school, and normal family life all work well.</p>
-          </div>
-          <div class="tip">
-            <strong>Old favorites are welcome</strong>
-            <p>Scanned prints, reunion photos, vacation memories, and holiday pictures are great additions.</p>
-          </div>
-          <div class="tip">
-            <strong>Use the email subject if helpful</strong>
-            <p>A short note like "Eli's birthday" or "Christmas 2025" helps identify the moment.</p>
-          </div>
-          <div class="tip">
-            <strong>Skip anything too private</strong>
-            <p>Only send photos you are comfortable having displayed in Grandma's room.</p>
-          </div>
-        </div>
+        <p class="footer-note">
+          This page is for family coordination. Photos should be family-friendly and intended for Grandma's slideshow.
+        </p>
       </div>
-
-      <p class="footer-note">
-        This page is for family coordination. Photos should be family-friendly and intended for Grandma's slideshow.
-      </p>
     </section>
   </main>
+
+  <script>
+    const tipsToggle = document.querySelector("#tips-toggle");
+    const tipsSection = document.querySelector("#tips");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    tipsToggle.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const willOpen = !tipsSection.classList.contains("is-open");
+      tipsSection.classList.toggle("is-open", willOpen);
+      tipsSection.toggleAttribute("inert", !willOpen);
+      tipsSection.setAttribute("aria-hidden", String(!willOpen));
+      tipsToggle.setAttribute("aria-expanded", String(willOpen));
+      tipsToggle.textContent = willOpen ? "Hide photo tips" : "What should I send?";
+
+      if (willOpen) {
+        window.setTimeout(() => {
+          tipsSection.scrollIntoView({
+            behavior: reduceMotion.matches ? "auto" : "smooth",
+            block: "start"
+          });
+        }, reduceMotion.matches ? 0 : 120);
+      }
+    });
+  </script>
 </body>
 </html>
 
