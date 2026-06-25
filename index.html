@@ -223,9 +223,9 @@
     }
 
     .hero-actions {
-      width: min(500px, 100%);
+      width: min(720px, 100%);
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 12px;
       align-items: center;
       margin-top: 18px;
@@ -584,6 +584,92 @@
       line-height: 1.35;
     }
 
+
+    .changelog-card {
+      width: min(1240px, 100%);
+      margin: 24px auto 0;
+      display: grid;
+      grid-template-columns: minmax(220px, 0.36fr) minmax(0, 0.64fr);
+      gap: 1px;
+      border: 1px solid rgba(133, 88, 39, 0.22);
+      border-radius: 12px;
+      background: var(--line);
+      box-shadow: 0 20px 56px rgba(67, 40, 21, 0.15);
+      overflow: hidden;
+    }
+
+    .changelog-dates,
+    .changelog-details {
+      background: rgba(255, 250, 238, 0.88);
+      padding: clamp(26px, 4vw, 42px);
+    }
+
+    .changelog-date-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .changelog-date {
+      width: 100%;
+      min-height: 46px;
+      padding: 0 14px;
+      border: 1px solid rgba(128, 84, 37, 0.24);
+      border-radius: 8px;
+      background: rgba(255, 252, 242, 0.74);
+      color: #4b321e;
+      font: inherit;
+      font-weight: 850;
+      text-align: left;
+      cursor: pointer;
+      transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .changelog-date:hover,
+    .changelog-date.is-active {
+      border-color: rgba(150, 99, 38, 0.54);
+      background: linear-gradient(180deg, rgba(255, 252, 242, 0.96), rgba(239, 222, 190, 0.84));
+      box-shadow: inset 3px 0 var(--gold);
+    }
+
+    .changelog-date:focus-visible {
+      outline: 3px solid rgba(189, 139, 56, 0.48);
+      outline-offset: 3px;
+    }
+
+    .changelog-entry {
+      display: none;
+    }
+
+    .changelog-entry.is-active {
+      display: block;
+    }
+
+    .changelog-entry p {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.65;
+    }
+
+    .changelog-entry ul {
+      margin: 20px 0 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.62;
+    }
+
+    .changelog-entry li + li {
+      margin-top: 8px;
+    }
+
+    .changelog-entry strong {
+      color: var(--sage-dark);
+    }
     @media (max-width: 980px) {
       .hero {
         min-height: auto;
@@ -592,7 +678,8 @@
 
       .hero-shell,
       .guidance,
-      .about-card {
+      .about-card,
+      .changelog-card {
         grid-template-columns: 1fr;
       }
 
@@ -685,6 +772,12 @@
 
       .tips {
         grid-template-columns: 1fr;
+      }
+
+
+      .changelog-dates,
+      .changelog-details {
+        padding: 28px 24px;
       }
 
       .secondary-action {
@@ -823,6 +916,16 @@
               aria-expanded="false"
               aria-controls="about"
             >About this project</button>
+            <button
+              class="secondary-action"
+              id="changelog-toggle"
+              type="button"
+              data-disclosure-target="changelog"
+              data-open-label="Hide what's new"
+              data-closed-label="What's new"
+              aria-expanded="false"
+              aria-controls="changelog"
+            >What's new</button>
           </div>
         </div>
 
@@ -944,6 +1047,126 @@
         </div>
       </div>
     </section>
+
+    <div class="mobile-disclosure-control">
+      <button
+        class="secondary-action"
+        type="button"
+        data-disclosure-target="changelog"
+        data-open-label="Hide what's new"
+        data-closed-label="Show what's new"
+        aria-expanded="false"
+        aria-controls="changelog"
+      >Show what's new</button>
+    </div>
+
+    <section class="content" id="changelog" aria-hidden="true" inert>
+      <div class="content-inner">
+        <div class="changelog-card">
+          <div class="changelog-dates">
+            <p class="kicker">What's new</p>
+            <h2>Change log</h2>
+            <div class="changelog-date-list" role="tablist" aria-label="Change log dates">
+              <button class="changelog-date is-active" type="button" role="tab" aria-selected="true" aria-controls="changelog-2026-06-25" data-changelog-date="2026-06-25">
+                June 25, 2026
+              </button>
+              <button class="changelog-date" type="button" role="tab" aria-selected="false" aria-controls="changelog-2026-06-24" data-changelog-date="2026-06-24">
+                June 24, 2026
+              </button>
+              <button class="changelog-date" type="button" role="tab" aria-selected="false" aria-controls="changelog-2026-06-10" data-changelog-date="2026-06-10">
+                June 10, 2026
+              </button>
+              <button class="changelog-date" type="button" role="tab" aria-selected="false" aria-controls="changelog-2026-06-08" data-changelog-date="2026-06-08">
+                June 8, 2026
+              </button>
+              <button class="changelog-date" type="button" role="tab" aria-selected="false" aria-controls="changelog-2026-06-07" data-changelog-date="2026-06-07">
+                June 7, 2026
+              </button>
+              <button class="changelog-date" type="button" role="tab" aria-selected="false" aria-controls="changelog-2026-06-04" data-changelog-date="2026-06-04">
+                June 4, 2026
+              </button>
+            </div>
+          </div>
+
+          <div class="changelog-details">
+            <article class="changelog-entry is-active" id="changelog-2026-06-25" role="tabpanel" data-changelog-entry="2026-06-25">
+              <p class="kicker">June 25, 2026</p>
+              <h2>What's New</h2>
+              <p>
+                We've been busy making the family photo slideshow even nicer to watch. Here's what's new:
+              </p>
+              <ul>
+                <li><strong>Looks great on any screen.</strong> Photos and the Family Update screen now scale smoothly for Full HD monitors and big 4K TVs.</li>
+                <li><strong>Smoother transitions.</strong> Photos gently fade from one to the next.</li>
+                <li><strong>Cleaner captions.</strong> The "who sent it and when" note now appears after each photo loads.</li>
+                <li><strong>Distraction-free display.</strong> The mouse pointer hides itself when it is not being used.</li>
+                <li><strong>Never gets stuck.</strong> If a photo cannot be shown, the slideshow simply moves on.</li>
+                <li><strong>Smarter Family Update board.</strong> Everyone is counted once, even if they send photos from more than one email address.</li>
+                <li><strong>Best-quality photos.</strong> Behind-the-scenes cleanup helps keep the sharpest versions on screen.</li>
+              </ul>
+            </article>
+
+            <article class="changelog-entry" id="changelog-2026-06-24" role="tabpanel" data-changelog-entry="2026-06-24">
+              <p class="kicker">June 24, 2026</p>
+              <h2>Desktop Support</h2>
+              <p>We made McPics easier to support from the desktop:</p>
+              <ul>
+                <li><strong>One-click shortcuts.</strong> Added simple desktop/menu shortcuts for the slideshow, settings, Family Update preview, and status checks.</li>
+                <li><strong>Better remote troubleshooting.</strong> The status shortcut helps quickly check whether McPics is running, importing photos, and seeing the local photo library.</li>
+                <li><strong>Cleaner relaunches.</strong> The slideshow can be reopened manually without waiting through the startup delay.</li>
+              </ul>
+            </article>
+
+            <article class="changelog-entry" id="changelog-2026-06-10" role="tabpanel" data-changelog-entry="2026-06-10">
+              <p class="kicker">June 10, 2026</p>
+              <h2>Photo Importing</h2>
+              <p>We made photo importing more reliable:</p>
+              <ul>
+                <li><strong>Fewer duplicate photos.</strong> McPics can now recognize exact duplicates from the same sender.</li>
+                <li><strong>Safer retries.</strong> If Gmail slows down or hits a quota limit, McPics stops cleanly and tries again later instead of making a mess.</li>
+                <li><strong>Better contributor credit.</strong> If two family members send the same photo, McPics can still give credit without cluttering the slideshow.</li>
+              </ul>
+            </article>
+
+            <article class="changelog-entry" id="changelog-2026-06-08" role="tabpanel" data-changelog-entry="2026-06-08">
+              <p class="kicker">June 8, 2026</p>
+              <h2>Family Update</h2>
+              <p>We added the Family Update experience:</p>
+              <ul>
+                <li><strong>Family Update screen.</strong> McPics now shows a friendly snapshot of recent photo activity.</li>
+                <li><strong>Fairer slideshow.</strong> New and rarely seen photos get priority so the same pictures do not repeat too often.</li>
+                <li><strong>iPhone photo support.</strong> Emailed HEIC/HEIF photos can be converted so they work in the browser slideshow.</li>
+                <li><strong>More predictable startup.</strong> Setup and day-to-day running were separated so the appliance starts faster and more reliably.</li>
+              </ul>
+            </article>
+
+            <article class="changelog-entry" id="changelog-2026-06-07" role="tabpanel" data-changelog-entry="2026-06-07">
+              <p class="kicker">June 7, 2026</p>
+              <h2>Management Tools</h2>
+              <p>We made McPics easier to manage:</p>
+              <ul>
+                <li><strong>Photo history.</strong> McPics started tracking which photos have appeared and how often.</li>
+                <li><strong>Smarter photo picking.</strong> The slideshow began choosing photos from the server so it can balance what has already been shown.</li>
+                <li><strong>Local settings page.</strong> Added a simple admin page for checking and adjusting McPics from the laptop.</li>
+              </ul>
+            </article>
+
+            <article class="changelog-entry" id="changelog-2026-06-04" role="tabpanel" data-changelog-entry="2026-06-04">
+              <p class="kicker">June 4, 2026</p>
+              <h2>Foundation</h2>
+              <p>McPics got its foundation:</p>
+              <ul>
+                <li><strong>Project started.</strong> Built the first local photo slideshow for Theresa's Linux Mint TV laptop.</li>
+                <li><strong>Local photo library.</strong> McPics began reading photos from the laptop and showing them full-screen in the browser.</li>
+                <li><strong>SQLite tracking.</strong> Added a local database so imported photos, senders, and photo history could be remembered.</li>
+                <li><strong>Sender folders.</strong> Photos could be organized by who sent them, while still appearing together in the slideshow.</li>
+                <li><strong>Remote-support basics.</strong> Started adding clear setup, logging, and health-check pieces so the system could be maintained over TeamViewer.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
@@ -979,6 +1202,22 @@
             });
           }, reduceMotion.matches ? 0 : 120);
         }
+      });
+    });
+
+    document.querySelectorAll("[data-changelog-date]").forEach((dateButton) => {
+      dateButton.addEventListener("click", () => {
+        const selectedDate = dateButton.dataset.changelogDate;
+
+        document.querySelectorAll("[data-changelog-date]").forEach((button) => {
+          const isActive = button.dataset.changelogDate === selectedDate;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-selected", String(isActive));
+        });
+
+        document.querySelectorAll("[data-changelog-entry]").forEach((entry) => {
+          entry.classList.toggle("is-active", entry.dataset.changelogEntry === selectedDate);
+        });
       });
     });
   </script>
