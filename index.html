@@ -1071,7 +1071,10 @@
             <p class="kicker">What's new</p>
             <h2>Change log</h2>
             <div class="changelog-date-list" role="tablist" aria-label="Change log dates">
-              <button class="changelog-date is-active" type="button" role="tab" aria-selected="true" aria-controls="changelog-2026-06-26" data-changelog-date="2026-06-26">
+              <button class="changelog-date is-active" type="button" role="tab" aria-selected="true" aria-controls="changelog-2026-07-01" data-changelog-date="2026-07-01">
+                July 1, 2026
+              </button>
+              <button class="changelog-date" type="button" role="tab" aria-selected="false" aria-controls="changelog-2026-06-26" data-changelog-date="2026-06-26">
                 June 26, 2026
               </button>
               <button class="changelog-date" type="button" role="tab" aria-selected="false" aria-controls="changelog-2026-06-25" data-changelog-date="2026-06-25">
@@ -1096,7 +1099,17 @@
           </div>
 
           <div class="changelog-details">
-            <article class="changelog-entry is-active" id="changelog-2026-06-26" role="tabpanel" data-changelog-entry="2026-06-26">
+            <article class="changelog-entry is-active" id="changelog-2026-07-01" role="tabpanel" data-changelog-entry="2026-07-01">
+              <p class="kicker">July 1, 2026</p>
+              <h2>Contributor Count Fixes</h2>
+              <p>We cleaned up a couple of counting issues behind the scenes:</p>
+              <ul>
+                <li><strong>More accurate contributor names.</strong> Fixed a bug where someone could be counted as two different contributors on the stats page if one of their photos arrived with incomplete sender info, showing up as a username like "elodell1515" instead of their real name.</li>
+                <li><strong>Smarter duplicate-photo detection.</strong> Fixed the duplicate-photo detector being a little too aggressive. Two different photos taken moments apart, like a quick burst, could get flagged as "the same picture" and only one would be counted or shown. Matching is now tighter so genuinely different photos no longer get merged together.</li>
+              </ul>
+            </article>
+
+            <article class="changelog-entry" id="changelog-2026-06-26" role="tabpanel" data-changelog-entry="2026-06-26">
               <p class="kicker">June 26, 2026</p>
               <h2>Sending in Your Photos</h2>
               <p>We've made emailing photos to the family slideshow friendlier and smarter:</p>
