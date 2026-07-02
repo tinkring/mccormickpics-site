@@ -1071,7 +1071,10 @@
             <p class="kicker">What's new</p>
             <h2>Change log</h2>
             <div class="changelog-date-list" role="tablist" aria-label="Change log dates">
-              <button class="changelog-date is-active" type="button" role="tab" aria-selected="true" aria-controls="changelog-2026-07-01" data-changelog-date="2026-07-01">
+              <button class="changelog-date is-active" type="button" role="tab" aria-selected="true" aria-controls="changelog-2026-07-02" data-changelog-date="2026-07-02">
+                July 2, 2026
+              </button>
+              <button class="changelog-date" type="button" role="tab" aria-selected="false" aria-controls="changelog-2026-07-01" data-changelog-date="2026-07-01">
                 July 1, 2026
               </button>
               <button class="changelog-date" type="button" role="tab" aria-selected="false" aria-controls="changelog-2026-06-26" data-changelog-date="2026-06-26">
@@ -1099,7 +1102,19 @@
           </div>
 
           <div class="changelog-details">
-            <article class="changelog-entry is-active" id="changelog-2026-07-01" role="tabpanel" data-changelog-entry="2026-07-01">
+            <article class="changelog-entry is-active" id="changelog-2026-07-02" role="tabpanel" data-changelog-entry="2026-07-02">
+              <p class="kicker">July 2, 2026</p>
+              <h2>Slideshow Algorithm Improvements</h2>
+              <p>A few improvements to how the slideshow picks and shows your photos:</p>
+              <ul>
+                <li><strong>Every photo gets its turn.</strong> We fixed a quirk where a handful of photos repeated far too often while others rarely appeared. The slideshow now works through the whole collection evenly before coming back around.</li>
+                <li><strong>New photos still get a moment in the spotlight.</strong> When someone sends in new pictures, they show up promptly a few times, then settle into the regular rotation with everything else.</li>
+                <li><strong>Names display properly.</strong> However your email signs your name, lowercase, ALL CAPS, or anything in between, it now shows up neatly formatted on the slideshow and contributor boards.</li>
+                <li><strong>Better duplicate detection.</strong> When the same photo arrives from more than one person, we're smarter about crediting everyone while showing it just once.</li>
+              </ul>
+            </article>
+
+            <article class="changelog-entry" id="changelog-2026-07-01" role="tabpanel" data-changelog-entry="2026-07-01">
               <p class="kicker">July 1, 2026</p>
               <h2>Contributor Count Fixes</h2>
               <p>We cleaned up a couple of counting issues behind the scenes:</p>
