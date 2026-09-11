@@ -12,18 +12,23 @@ Photo importing, email replies, slideshow playback, and the monitor schedule run
 
 - `index.html`: page content and update history.
 - `assets/site.css`: responsive styles and reduced-motion support.
-- `assets/site.js`: progressive enhancement for copying the upload address.
+- `assets/site.js`: progressive enhancements for copying the upload address, one-time entrance/reveal animations, and gentle desktop photo tilt.
 - `assets/mcpics-wordmark.png`: existing McPics logo.
 - `assets/grandma-about.jpeg`: existing portrait, displayed without cropping.
+- `assets/family-memory-hero.png`: existing decorative room-and-photo-album image used in the story section; it is not a live view of Grandma's room.
 - `CNAME`: the existing custom domain.
 
 The site uses plain HTML, CSS, and JavaScript with system fonts. No package installation or build step is required. Navigation, email links, photo tips, the story, and update disclosures work without JavaScript.
+
+The photo caption uses a local handwriting font when available, with a cursive fallback. All images and scripts are served from this repository. Motion is optional: content is visible by default, reveals play once, desktop tilt is limited to a fine mouse pointer, and changing the reduced-motion setting cancels running animations. Touch scrolling does not trigger tilt.
 
 ## Local preview
 
 From this directory, run `python3 -m http.server 8000`, then open `http://localhost:8000`.
 
-Check phone and desktop layouts, keyboard navigation, the email links, clipboard success and manual fallback, and expanding update entries. The site itself cannot verify delivery to the slideshow.
+You can also download the preview branch ZIP, extract it, and open `index.html` directly in your browser.
+
+Check phone and desktop layouts, keyboard navigation, the email links, clipboard success and manual fallback, and expanding update entries. Check photo tilt with a mouse and the still layout with reduced motion enabled. The site itself cannot verify delivery to the slideshow.
 
 ## Publishing
 
