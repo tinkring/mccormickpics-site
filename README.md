@@ -20,6 +20,7 @@ Photo importing, email replies, slideshow playback, and the monitor schedule run
 - `assets/mcpics-wordmark.png`: existing McPics logo.
 - `assets/grandma-about.jpeg`: existing portrait, displayed without cropping.
 - `assets/family-memory-hero.png`: existing decorative room-and-photo-album image used in the story section; it is not a live view of Grandma's room.
+- `assets/mcpics-social-2026-09.png`: branded link-preview artwork for messaging and social sharing.
 - `CNAME`: the existing custom domain.
 - `docs/technical-content-notes.md`: source references and accuracy boundaries for the technical page.
 
@@ -42,3 +43,9 @@ The existing `.github/workflows/pages.yml` workflow publishes pushes to `main` t
 Keep the existing upload address, personal story, photos, and dated update history accurate when editing. Do not add backend capabilities or claims without verifying them against the slideshow project.
 
 The desktop project was reviewed as a read-only reference for this page. All website changes belong in this repository.
+
+## Link previews
+
+Both pages include Open Graph and large-image social-card metadata directly in the HTML head. They share the McPics artwork but use page-specific titles, descriptions, and canonical URLs. Preview images use absolute URLs on the existing custom domain and are included by the workflow's assets copy step.
+
+The new preview becomes available to messaging apps after the website changes are published. Opening a downloaded HTML file previews the page but does not update a messaging app's cached card. Existing message threads may retain older previews even after publication; the website cannot force a client to refresh a previously shared link.
