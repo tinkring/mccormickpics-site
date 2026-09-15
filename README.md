@@ -6,7 +6,7 @@ The family photo-sharing website at [mccormickpics.com](https://mccormickpics.co
 
 The home page helps family members email photos to the existing McPics upload address. It includes photo tips, the original project story, three recent updates, and an expandable archive of earlier dated updates. The send links open the visitor's email app; visitors still need to attach their photos and send the email. The copy button includes a manual fallback when clipboard access is unavailable.
 
-The separate **Behind the slideshow** page explains the desktop architecture and six documented design challenges in the builder's voice. It is linked from the main navigation, project story, and footer. Navigation remains available on mobile. Both footers include a return to the photo-sharing section rather than another email action.
+The separate **Behind the slideshow** page explains the desktop architecture and six documented design challenges in a conversational, project-focused voice. It is linked from the main navigation, project story, and footer. Navigation remains available on mobile. Both footers include a return to the photo-sharing section rather than another email action.
 
 Photo importing, email replies, slideshow playback, and the monitor schedule run on the existing McPics appliance. This repository does not implement or change those services, store submitted photos, or expose a public photo gallery.
 
@@ -40,7 +40,7 @@ Run `python3 tests/check_site.py` before publishing. Check phone and desktop lay
 ## Editorial rules
 
 - Keep the original family story, Grandma's photo, and established visual design unless a change is requested.
-- Use the builder's first-person voice for the project's development. Use “we” and “our” for the family, not an implied company or development team.
+- Keep first-person reflection in the original family story. Elsewhere, focus on the photos, Grandma, and what McPics does; avoid repeated “I built,” “I changed,” or “I added” credits. Use “we” and “our” for the family, not an implied company or development team.
 - Keep instructions practical. Let the original story carry the emotion instead of repeating its sentiments in every section.
 - Write updates for family: what changed and what they will notice. Avoid reports about completed design tasks, excessive feature lists, or promotional claims.
 - Keep all historical dates and their meaning. Shortening an entry is fine; do not move old work under a new date. Keep the archive label's count and date range accurate as entries move into it.

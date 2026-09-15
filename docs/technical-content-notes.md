@@ -28,7 +28,7 @@ Reviewed desktop revision: `31efafe366142da82cf36f2ef78130485aa56d9c` (July 6, 2
 - Keep personal names, sender usernames, private contact details, locations, credentials, personal mailbox settings, home-directory paths, private source code, and machine-specific addresses out of the public page. Refer to Grandma only as “Grandma.” No links to private source repositories are required in the visitor-facing content.
 - Use the website's existing public submission address. Do not replace it with an address appearing in the desktop project's configuration examples.
 - Preserve the user's original story and all historical dates. With the user's approval, the September 15, 2026 editorial pass shortened older entries without changing their dates or underlying events, and grouped eight earlier entries in a native HTML archive.
-- Use the builder's first-person voice to describe documented changes. Do not invent anecdotes, family reactions, or details about the running appliance to make the story more personal.
+- Describe documented problems and changes conversationally, with the focus on the project rather than repeated author credits. Keep first-person reflection in the original family story. Do not invent anecdotes, family reactions, or details about the running appliance to make the story more personal.
 
 ## Preview and publishing
 

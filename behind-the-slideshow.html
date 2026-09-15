@@ -50,12 +50,12 @@
         <div>
           <p class="eyebrow">Behind the slideshow</p>
           <h1 id="technical-title">A slideshow<br /><em>seemed simple.</em></h1>
-          <p class="tech-deck">I thought the hard part would be getting photos onto the TV. It turned out that choosing which picture came next, handling emailed attachments, and keeping everything running from a distance took just as much attention.</p>
+          <p class="tech-deck">Getting photos onto the TV seemed like the hard part. It turned out that choosing which picture came next, handling emailed attachments, and keeping everything running from a distance took just as much attention.</p>
         </div>
         <aside class="design-note" aria-labelledby="design-priority">
           <p class="eyebrow">The design priority</p>
           <h2 id="design-priority">Simple for the family.<br />Dependable for Grandma.</h2>
-          <p>I wanted family to be able to email a photo, and Grandma to enjoy it without having to manage the computer.</p>
+          <p>The goal was simple: family could email a photo, and Grandma could enjoy it without having to manage the computer.</p>
         </aside>
       </div>
     </section>
@@ -84,43 +84,43 @@
       <div class="technical-section shell">
         <div class="chapter-heading">
           <div><p class="eyebrow">02 / What got complicated</p><h2 id="challenges-title">What needed<br />another try.</h2></div>
-          <p>Getting a picture on screen was only the start. These are six problems I worked through as the project grew.</p>
+          <p>Getting a picture on screen was only the start. These six problems took some figuring out as the project grew.</p>
         </div>
 
         <article class="challenge">
           <span class="challenge-number" aria-hidden="true">01</span>
           <div><h3>“Fair” rotation wasn't actually fair.</h3><p class="challenge-problem">Older photos had built up hundreds of appearances. Trying to equalize lifetime counts made a fresh batch play over and over to catch up, crowding out the rest of the collection.</p></div>
-          <div class="challenge-fix"><p>I changed the selection to put more weight on how long it had been since a photo appeared, and limited how much its lifetime count could influence the choice. Unseen photos get priority, while new arrivals get a brief spotlight.</p><p>Recent-repeat exclusions help spread things out. An optional sender-balanced mode adds variety, too. It's a weighted selection, not a promise that every photo will play exactly once before anything repeats.</p></div>
+          <div class="challenge-fix"><p>Photo selection now puts more weight on how long it has been since a photo appeared, with a limit on how much its lifetime count can influence the choice. Unseen photos get priority, while new arrivals get a brief spotlight.</p><p>Recent-repeat exclusions help spread things out. An optional sender-balanced mode adds variety, too. It's a weighted selection, not a promise that every photo will play exactly once before anything repeats.</p></div>
         </article>
 
         <article class="challenge">
           <span class="challenge-number" aria-hidden="true">02</span>
           <div><h3>Similar photos aren't always duplicates.</h3><p class="challenge-problem">Two different shots from a quick burst were similar enough to land in the same duplicate group. One disappeared from the rotation, and the contribution count was wrong.</p></div>
-          <div class="challenge-fix"><p>I tightened the visual matching so separate shots were less likely to be grouped together. Exact copies are checked with a file fingerprint; similar-looking copies use a separate perceptual fingerprint.</p><p>When copies do belong together, McPics prefers the version with the most pixels and can preserve credit for the people who sent it.</p><p class="tradeoff">Stricter matching protects distinct photos, but can let some near-duplicate resends through. That tradeoff matters when two similar pictures are both worth keeping.</p></div>
+          <div class="challenge-fix"><p>Stricter visual matching makes separate shots less likely to be grouped together. Exact copies are checked with a file fingerprint; similar-looking copies use a separate perceptual fingerprint.</p><p>When copies do belong together, McPics prefers the version with the most pixels and can preserve credit for the people who sent it.</p><p class="tradeoff">Stricter matching protects distinct photos, but can let some near-duplicate resends through. That tradeoff matters when two similar pictures are both worth keeping.</p></div>
         </article>
 
         <article class="challenge">
           <span class="challenge-number" aria-hidden="true">03</span>
           <div><h3>An email attachment isn't always a usable photo.</h3><p class="challenge-problem">Phones can shrink pictures before sending them. iPhone photos may arrive in HEIC format. Email signatures add tiny logos, while real photos sometimes arrive marked as inline images.</p></div>
-          <div class="challenge-fix"><p>The importer now checks filenames, attachment types, file size, and image dimensions. It converts HEIC/HEIF photos to JPEG for the browser and keeps low-resolution imports out of the rotation without deleting them.</p><p>I also added optional replies for successful imports, undersized photos, and emails with no photos attached. Thank-you replies are grouped after a quiet period, so sending several pictures doesn't produce a reply for every attachment.</p></div>
+          <div class="challenge-fix"><p>The importer now checks filenames, attachment types, file size, and image dimensions. It converts HEIC/HEIF photos to JPEG for the browser and keeps low-resolution imports out of the rotation without deleting them.</p><p>Optional replies confirm successful imports or flag undersized photos and emails with no photos attached. Thank-you replies are grouped after a quiet period, so sending several pictures doesn't produce a reply for every attachment.</p></div>
         </article>
 
         <article class="challenge">
           <span class="challenge-number" aria-hidden="true">04</span>
           <div><h3>A retry could get stuck in the same place.</h3><p class="challenge-problem">The importer kept rereading old messages. If the mailbox hit a quota limit partway through, the next run could hit the same limit before it ever reached new photos.</p></div>
-          <div class="challenge-fix"><p>I changed the importer to save its place after each fully processed message, using the mailbox's stable message identifiers. The next run resumes there, and saved attachment fingerprints help avoid importing the same files again.</p><p>Each display computer tracks its own progress. It doesn't depend on an email's read/unread flag, which another device or someone checking the inbox could change.</p></div>
+          <div class="challenge-fix"><p>The importer now saves its place after each fully processed message, using the mailbox's stable message identifiers. The next run resumes there, and saved attachment fingerprints help avoid importing the same files again.</p><p>Each display computer tracks its own progress. It doesn't depend on an email's read/unread flag, which another device or someone checking the inbox could change.</p></div>
         </article>
 
         <article class="challenge">
           <span class="challenge-number" aria-hidden="true">05</span>
           <div><h3>A smooth fade took more than a fade effect.</h3><p class="challenge-problem">Changing a single image could create a jump through black. Captions could arrive before their photo, and a file that failed to load could interrupt the experience.</p></div>
-          <div class="challenge-fix"><p>I used two image layers so the next photo could load before the current one faded away. Captions update after the transition, and an image that fails to load is logged and skipped.</p><p>The layout fits the whole photo on screen without cropping. It also scales for larger displays and hides the mouse pointer when it's idle.</p></div>
+          <div class="challenge-fix"><p>Two image layers let the next photo load before the current one fades away. Captions update after the transition, and an image that fails to load is logged and skipped.</p><p>The layout fits the whole photo on screen without cropping. It also scales for larger displays and hides the mouse pointer when it's idle.</p></div>
         </article>
 
         <article class="challenge">
           <span class="challenge-number" aria-hidden="true">06</span>
           <div><h3>Turning off the screen changed the desktop.</h3><p class="challenge-problem">Display changes can move windows and interfere with remote support. Simply putting the whole computer to sleep would also stop it from collecting new pictures.</p></div>
-          <div class="challenge-fix"><p>For the mini-PC setup, I separated the slideshow screen from the remote-support display. A dummy HDMI adapter keeps a display available for remote access even when the TV is off.</p><p>The optional sleep schedule turns off only the slideshow output, leaving the app and importer running. When it wakes, the system restores the display layout and opens a fresh fullscreen browser on the right screen.</p></div>
+          <div class="challenge-fix"><p>The mini-PC setup uses separate outputs for the slideshow screen and remote support. A dummy HDMI adapter keeps a display available for remote access even when the TV is off.</p><p>The optional sleep schedule turns off only the slideshow output, leaving the app and importer running. When it wakes, the system restores the display layout and opens a fresh fullscreen browser on the right screen.</p></div>
         </article>
       </div>
     </section>
@@ -144,14 +144,14 @@
       </table>
       <div class="runtime-note">
         <div><h3>Starting in the right order</h3><p>The app starts independently. The login launcher waits for remote support and the app's health check before opening the fullscreen browser. Dependency installation stays out of everyday startup.</p></div>
-        <div><h3>Checking it from a distance</h3><p>Desktop shortcuts, local settings, health checks, and logs help me see what's wrong without asking Grandma to troubleshoot the computer.</p></div>
+        <div><h3>Checking it from a distance</h3><p>Desktop shortcuts, local settings, health checks, and logs make problems easier to diagnose without asking Grandma to troubleshoot the computer.</p></div>
       </div>
     </section>
 
     <section class="engineering-closing" aria-labelledby="engineering-goal">
       <div class="shell">
         <h2 id="engineering-goal">All that work,<br />so she can just enjoy the pictures.</h2>
-        <p>It became more involved than I expected, but the goal hasn't changed: family sends pictures, and Grandma gets to see them.</p>
+        <p>The project grew, but the goal hasn't changed: family sends pictures, and Grandma gets to see them.</p>
         <a href="index.html#about">Back to the family story <span aria-hidden="true">&rarr;</span></a>
       </div>
     </section>
