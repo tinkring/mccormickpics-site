@@ -40,7 +40,7 @@ Check phone and desktop layouts, keyboard navigation, the email links, clipboard
 
 The existing `.github/workflows/pages.yml` workflow publishes pushes to `main` through GitHub Pages. It copies `index.html`, `behind-the-slideshow.html`, `CNAME`, `README.md`, and the entire `assets` directory into the deployment artifact. Branch changes can be reviewed in a pull request before merging to publish.
 
-Keep the existing upload address, personal story, photos, and dated update history accurate when editing. Do not add backend capabilities or claims without verifying them against the slideshow project.
+Keep the existing upload address, personal story, photos, and dated update history accurate when editing. Refer to Grandma only as “Grandma” in all public copy, and do not publish personal names, sender usernames, private contact details, locations, or machine-specific identifiers. Do not add backend capabilities or claims without verifying them against the slideshow project.
 
 The desktop project was reviewed as a read-only reference for this page. All website changes belong in this repository.
 

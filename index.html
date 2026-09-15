@@ -161,7 +161,7 @@
           <summary><time datetime="2026-07-01">July 1, 2026</time><span>Contributor Count Fixes</span><span class="expand-icon" aria-hidden="true"></span></summary>
           <div class="update-body"><p>We cleaned up a couple of counting issues behind the scenes:</p>
               <ul>
-                <li><strong>More accurate contributor names.</strong> Fixed a bug where someone could be counted as two different contributors on the stats page if one of their photos arrived with incomplete sender info, showing up as a username like "elodell1515" instead of their real name.</li>
+                <li><strong>More accurate contributor names.</strong> Fixed a bug where someone could be counted as two different contributors on the stats page if one of their photos arrived with incomplete sender info, showing up under a fallback username instead of their name.</li>
                 <li><strong>Smarter duplicate-photo detection.</strong> Fixed the duplicate-photo detector being a little too aggressive. Two different photos taken moments apart, like a quick burst, could get flagged as "the same picture" and only one would be counted or shown. Matching is now tighter so genuinely different photos no longer get merged together.</li>
               </ul></div>
         </details>
@@ -232,7 +232,7 @@
           <summary><time datetime="2026-06-04">June 4, 2026</time><span>Foundation</span><span class="expand-icon" aria-hidden="true"></span></summary>
           <div class="update-body"><p>McPics got its foundation:</p>
               <ul>
-                <li><strong>Project started.</strong> Built the first local photo slideshow for Theresa's Linux Mint TV laptop.</li>
+                <li><strong>Project started.</strong> Built the first local photo slideshow for Grandma's TV.</li>
                 <li><strong>Local photo library.</strong> McPics began reading photos from the laptop and showing them full-screen in the browser.</li>
                 <li><strong>SQLite tracking.</strong> Added a local database so imported photos, senders, and photo history could be remembered.</li>
                 <li><strong>Sender folders.</strong> Photos could be organized by who sent them, while still appearing together in the slideshow.</li>

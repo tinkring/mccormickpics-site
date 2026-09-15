@@ -25,7 +25,7 @@ Reviewed desktop revision: `31efafe366142da82cf36f2ef78130485aa56d9c` (July 6, 2
 - The scheduler is scored and randomized within a candidate pool; it does not guarantee that every photo appears exactly once before any repeat.
 - Stricter perceptual matching reduces a documented false positive; it does not guarantee perfect duplicate detection.
 - Local playback means the computer serves already-imported photos from local storage. New email delivery still requires connectivity.
-- Keep credentials, personal mailbox settings, home-directory paths, private source code, and machine-specific addresses out of the public page. No links to private source repositories are required in the visitor-facing content.
+- Keep personal names, sender usernames, private contact details, locations, credentials, personal mailbox settings, home-directory paths, private source code, and machine-specific addresses out of the public page. Refer to Grandma only as “Grandma.” No links to private source repositories are required in the visitor-facing content.
 - Use the website's existing public submission address. Do not replace it with an address appearing in the desktop project's configuration examples.
 - Preserve the user's original story and dated update history. The technical page adds context rather than rewriting historical entries.
 
