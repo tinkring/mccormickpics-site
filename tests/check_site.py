@@ -24,8 +24,8 @@ class Page(HTMLParser):
         self.path = path
         self.source = path.read_text(encoding="utf-8")
         self.ids, self.links, self.dates, self.stack = [], [], [], []
-        self.archived_dates = []
-        self.archive_count = self.heading_count = 0
+        self.update_open_states = []
+        self.heading_count = 0
         self.feed(self.source)
         self.close()
         assert not self.stack, f"{path.name}: unclosed tags: {self.stack}"
@@ -42,13 +42,13 @@ class Page(HTMLParser):
             self.heading_count += 1
         if tag == "img":
             assert "alt" in attrs, f"{self.path.name}: image missing alt text"
-        if tag == "details" and "update-archive" in classes:
-            self.archive_count += 1
-            assert "open" not in attrs, "Archive should be collapsed initially"
+        if tag == "details" and "update" in classes:
+            assert self.stack and self.stack[-1][0] == "div" and (
+                "updates-list" in self.stack[-1][1]
+            ), "Every update must be directly visible in the main update list"
+            self.update_open_states.append("open" in attrs)
         if tag == "time":
             self.dates.append(attrs["datetime"])
-            if any("update-archive" in item[1] for item in self.stack):
-                self.archived_dates.append(attrs["datetime"])
         if tag not in VOID:
             self.stack.append((tag, classes))
 
@@ -98,12 +98,12 @@ def main():
 
     home = pages["index.html"]
     assert home.dates == EXPECTED_DATES, "Historical update dates changed or moved"
-    assert home.archive_count == 1, "Expected one native update archive"
-    assert home.archived_dates == EXPECTED_DATES[3:], "Incorrect archived entries"
-    assert f"{len(home.archived_dates)} updates" in home.source
+    assert home.update_open_states == [True] + [False] * (len(EXPECTED_DATES) - 1), (
+        "Show all updates with only the newest entry expanded by default"
+    )
     tech = pages["behind-the-slideshow.html"]
     assert tech.source.count('class="challenge"') == 6, "Keep all six design challenges"
-    print("PASS history: all 11 dates retained; 3 recent + 8 archived; 6 challenges retained")
+    print("PASS history: all 11 dates listed; only newest expanded; 6 challenges retained")
 
 
 if __name__ == "__main__":

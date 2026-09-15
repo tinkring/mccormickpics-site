@@ -4,7 +4,7 @@ The family photo-sharing website at [mccormickpics.com](https://mccormickpics.co
 
 ## What this website does
 
-The home page helps family members email photos to the existing McPics upload address. It includes photo tips, the original project story, three recent updates, and an expandable archive of earlier dated updates. The send links open the visitor's email app; visitors still need to attach their photos and send the email. The copy button includes a manual fallback when clipboard access is unavailable.
+The home page helps family members email photos to the existing McPics upload address. It includes photo tips, the original project story, and the full dated update history. Every update's date and title are visible, with only the newest entry expanded by default. The send links open the visitor's email app; visitors still need to attach their photos and send the email. The copy button includes a manual fallback when clipboard access is unavailable.
 
 The separate **Behind the slideshow** page explains the desktop architecture and six documented design challenges in a conversational, project-focused voice. It is linked from the main navigation, project story, and footer. Navigation remains available on mobile. Both footers include a return to the photo-sharing section rather than another email action.
 
@@ -35,7 +35,7 @@ From this directory, run `python3 -m http.server 8000`, then open `http://localh
 
 You can also download the preview branch ZIP, extract it, and open `index.html` directly in your browser.
 
-Run `python3 tests/check_site.py` before publishing. Check phone and desktop layouts, keyboard navigation, the email links, clipboard success and manual fallback, expanding the archive and individual update entries, and returning to photo sharing from both footers. Check photo tilt with a mouse and the still layout with reduced motion enabled. The site itself cannot verify delivery to the slideshow.
+Run `python3 tests/check_site.py` before publishing. Check phone and desktop layouts, keyboard navigation, the email links, clipboard success and manual fallback, expanding individual update entries, and returning to photo sharing from both footers. Check photo tilt with a mouse and the still layout with reduced motion enabled. The site itself cannot verify delivery to the slideshow.
 
 ## Editorial rules
 
@@ -43,7 +43,7 @@ Run `python3 tests/check_site.py` before publishing. Check phone and desktop lay
 - Keep first-person reflection in the original family story. Elsewhere, focus on the photos, Grandma, and what McPics does; avoid repeated “I built,” “I changed,” or “I added” credits. Use “we” and “our” for the family, not an implied company or development team.
 - Keep instructions practical. Let the original story carry the emotion instead of repeating its sentiments in every section.
 - Write updates for family: what changed and what they will notice. Avoid reports about completed design tasks, excessive feature lists, or promotional claims.
-- Keep all historical dates and their meaning. Shortening an entry is fine; do not move old work under a new date. Keep the archive label's count and date range accurate as entries move into it.
+- Keep all historical dates and their meaning. Shortening an entry is fine; do not move old work under a new date. Show every update's date and title in one list, with only the newest entry expanded by default. Do not nest older entries inside an archive disclosure.
 - Tell the technical story as problems encountered and changes made, while preserving documented behavior and relevant tradeoffs.
 - Automatic replies are configurable, photo selection is weighted rather than a strict loop, and error recovery is not a guarantee that nothing can fail.
 - Keep the public submission address, native HTML navigation, and expandable updates usable without JavaScript.
