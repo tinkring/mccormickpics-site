@@ -4,9 +4,9 @@ The family photo-sharing website at [mccormickpics.com](https://mccormickpics.co
 
 ## What this website does
 
-The home page helps family members email photos to the existing McPics upload address. It includes photo tips, the project story, and the slideshow's update history. The send links open the visitor's email app; visitors still need to attach their photos and send the email. The copy button includes a manual fallback when clipboard access is unavailable.
+The home page helps family members email photos to the existing McPics upload address. It includes photo tips, the original project story, three recent updates, and an expandable archive of earlier dated updates. The send links open the visitor's email app; visitors still need to attach their photos and send the email. The copy button includes a manual fallback when clipboard access is unavailable.
 
-The separate **Behind the slideshow** page explains the desktop architecture and six documented design challenges. It is linked from the main navigation, project story, and footer. The footer is for navigation rather than another email action.
+The separate **Behind the slideshow** page explains the desktop architecture and six documented design challenges in the builder's voice. It is linked from the main navigation, project story, and footer. Navigation remains available on mobile. Both footers include a return to the photo-sharing section rather than another email action.
 
 Photo importing, email replies, slideshow playback, and the monitor schedule run on the existing McPics appliance. This repository does not implement or change those services, store submitted photos, or expose a public photo gallery.
 
@@ -23,6 +23,7 @@ Photo importing, email replies, slideshow playback, and the monitor schedule run
 - `assets/mcpics-social-2026-09.png`: branded link-preview artwork for messaging and social sharing.
 - `CNAME`: the existing custom domain.
 - `docs/technical-content-notes.md`: source references and accuracy boundaries for the technical page.
+- `tests/check_site.py`: dependency-free content, link, history, and markup checks.
 
 The site uses plain HTML, CSS, and JavaScript with system fonts. No package installation or build step is required. Navigation, email links, photo tips, the story, and update disclosures work without JavaScript.
 
@@ -34,7 +35,18 @@ From this directory, run `python3 -m http.server 8000`, then open `http://localh
 
 You can also download the preview branch ZIP, extract it, and open `index.html` directly in your browser.
 
-Check phone and desktop layouts, keyboard navigation, the email links, clipboard success and manual fallback, and expanding update entries. Check photo tilt with a mouse and the still layout with reduced motion enabled. The site itself cannot verify delivery to the slideshow.
+Run `python3 tests/check_site.py` before publishing. Check phone and desktop layouts, keyboard navigation, the email links, clipboard success and manual fallback, expanding the archive and individual update entries, and returning to photo sharing from both footers. Check photo tilt with a mouse and the still layout with reduced motion enabled. The site itself cannot verify delivery to the slideshow.
+
+## Editorial rules
+
+- Keep the original family story, Grandma's photo, and established visual design unless a change is requested.
+- Use the builder's first-person voice for the project's development. Use “we” and “our” for the family, not an implied company or development team.
+- Keep instructions practical. Let the original story carry the emotion instead of repeating its sentiments in every section.
+- Write updates for family: what changed and what they will notice. Avoid reports about completed design tasks, excessive feature lists, or promotional claims.
+- Keep all historical dates and their meaning. Shortening an entry is fine; do not move old work under a new date. Keep the archive label's count and date range accurate as entries move into it.
+- Tell the technical story as problems encountered and changes made, while preserving documented behavior and relevant tradeoffs.
+- Automatic replies are configurable, photo selection is weighted rather than a strict loop, and error recovery is not a guarantee that nothing can fail.
+- Keep the public submission address, native HTML navigation, and expandable updates usable without JavaScript.
 
 ## Publishing
 
